@@ -77,9 +77,9 @@ const PrimitivesTable: Component<{ packages: PackageListItem[] | undefined }> = 
       {packages => {
         // group packages by category
         const categories = packages.reduce((acc: Record<string, PackageListItem[]>, pkg) => {
-          const category = acc[pkg.category];
+          const category = acc[pkg.primitive.category];
           if (category) category.push(pkg);
-          else acc[pkg.category] = [pkg];
+          else acc[pkg.primitive.category] = [pkg];
           return acc;
         }, {});
 
@@ -108,7 +108,7 @@ const PrimitivesTable: Component<{ packages: PackageListItem[] | undefined }> = 
                         <PrimitiveBtn href={pkg.name}>{pkg.name}</PrimitiveBtn>
                       </Table.TD>
                       <Table.TD>
-                        <StageBadge value={pkg.stage} />
+                        <StageBadge value={pkg.primitive.stage} />
                       </Table.TD>
                       <Table.TD>
                         {pkg.primitives.map(primitive => (
